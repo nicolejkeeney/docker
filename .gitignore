@@ -1,0 +1,12 @@
+# Mac metadata file
+.DS_Store
+
+# Pycache 
+__pycache__/*
+
+# Jupyter notebook checkpoints 
+.ipynb_checkpoints
+*/.ipynb_checkpoints/**
+
+# build log file 
+*.log 
