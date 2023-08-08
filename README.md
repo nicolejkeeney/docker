@@ -42,5 +42,5 @@ conda-lock -f environment.yml -p osx-64 -p linux-64
 ## The Makefile
 The Makefile exists to make the lives of developers easier. It wraps up all the code required to build the image and launch JupyterLab from the container into a single file, allowing the developer to simply run `make build` to build the image and `make local` to launch JupyterLab. 
 
-# Find an issue? 
+## Find an issue? 
 Please reach out if you find any issues in the code or descriptive text. While I've done my best, I'm for the most part a self-taught programmer and I don't have an in-depth understanding of docker. If you find an issue and want to contribute to solving it, please open an [issue](https://github.com/nicolejkeeney/py-geo-docker/issues) in GitHub, shoot me an email, or [open a PR](https://github.com/nicolejkeeney/geo-py-docker/pulls) to fix the problem if you are inclined to do so. 
