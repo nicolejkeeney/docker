@@ -23,3 +23,11 @@ build:
 	@echo "Pip dependencies will be installed from the requirements.txt if it exists."
 	@echo "Output from the build will be saved in a log file build.log"
 	docker build -t $(IMG_NAME) .  &> build.log
+
+# "make conda-lock" 
+# Make conda-lock.yml from environment.yml 
+# You must have conda-lock installed 
+conda-lock: 
+	@echo "Creating multi-platform conda-lock.yml from environment.yml"
+	@echo "Will fail if conda-lock package is not installed"
+	conda-lock -f environment.yml -p osx-64 -p linux-64
