@@ -1,0 +1,25 @@
+# Makefile for building a custom local docker image and launching a JupyterLab from the containerized image 
+# Docker image can be built by running "make build" in shell (DO THIS ONLY ONCE)
+# Run "make local" to open JupyterLab from containerized image 
+
+# Name to give the image 
+IMG_NAME = era-renewables
+
+# "make local"
+# Launch local JupyerLab from containerized instance of IMG_NAME
+# Open JupyterLab by clicking the bottom link in the terminal output 
+local:
+	@echo "Opening JupyterLab from runtime instance of $(IMG_NAME)"
+	@echo "Copy/paste the last link in the terminal output into your web browser to open JupyterLab"
+	docker run -t --rm --volume "$(PWD)":/home/jovyan -p 8888:8888 $(IMG_NAME) jupyter lab --ip 0.0.0.0
+
+# "make build"
+# YOU ONLY NEED TO DO THIS ONCE 
+# Create the docker image locally using the Dockerfile in the current repository 
+# Output from this command can be found in the logfile build.log
+build: 
+	@echo "Building docker image named $(IMG_NAME) from Dockerfile"
+	@echo "A conda environment will be created in the image using a conda-lock.yml file if it exists. If not, the environment.yml will be used."
+	@echo "Pip dependencies will be installed from the requirements.txt if it exists."
+	@echo "Output from the build will be saved in a log file build.log"
+	docker build -t $(IMG_NAME) .  &> build.log
