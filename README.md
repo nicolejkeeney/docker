@@ -40,7 +40,11 @@ conda-lock -f environment.yml -p osx-64 -p linux-64
 ```
 
 ## The Makefile
-The Makefile exists to make the lives of developers easier. It wraps up all the code required to build the image and launch JupyterLab from the container into a single file, allowing the developer to simply run `make build` to build the image and `make local` to launch JupyterLab. <br><br>How is it different from a shell script, you may ask? It doesn't run in parallel like a shell script. You can run isolated sections of code from the same Makefile. For example, `make build` runs just the command for building the image, which you'll only do once, whereas you'll use `make local` anytime you want to open a JupyterLab instance. 
+The Makefile exists to make the lives of developers easier. It wraps up all the code required to build the image and launch JupyterLab from the container into a single file, allowing the developer to simply run `make build` to build the image and `make local` to launch JupyterLab. <br><br>How is it different from a shell script, you may ask? It doesn't run in parallel like a shell script. You can run isolated sections of code from the same Makefile. For example, `make build` runs just the command for building the image, which you'll only do once, whereas you'll use `make local` anytime you want to open a JupyterLab instance.<br><br>I added a few helpful commands to the Makefile: 
+1) `make conda-lock`: make  the conda-lock file from the environment.yml file. **You need to have conda-lock installed first**
+2) `make build`: build the image
+3) `make local`: open JupyterLab from runtime instance of image
+4) `make run`: run a test python script. Modify the path to the script in the Makefile [here](https://github.com/nicolejkeeney/geo-py-docker/blob/9bd12bbd5aacd94249ba44c0318eb0d546bada7f/Makefile#L38) to change the script.
 
 # Find an issue? 
 Please reach out if you find any issues in the code or descriptive text. While I've done my best, I'm for the most part a self-taught programmer and I don't have an in-depth understanding of docker. If you find an issue and want to contribute to solving it, please open an [issue](https://github.com/nicolejkeeney/py-geo-docker/issues) in GitHub, shoot me an email, or [open a PR](https://github.com/nicolejkeeney/geo-py-docker/pulls) to fix the problem if you are inclined to do so. 
