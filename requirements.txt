@@ -1,2 +1,4 @@
 jupyterlab==4.0.4
 notebook==7.0.2
+nrel-rev==0.7.3
+tables==3.8.0
