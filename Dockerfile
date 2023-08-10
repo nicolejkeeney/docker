@@ -81,6 +81,20 @@ USER root
 # FIXME (?): this line breaks the cache of all steps below
 COPY --chown=jovyan:jovyan . /home/jovyan
 
+# Install apt packages specified in a apt.txt file if it exists.
+# Unlike repo2docker, blank lines nor comments are supported here.
+ONBUILD RUN echo "Checking for 'apt.txt'..." \
+        ; [ -d binder ] && cd binder \
+        ; [ -d .binder ] && cd .binder \
+        ; if test -f "apt.txt" ; then \
+        apt-get update --fix-missing > /dev/null \
+        # Read apt.txt line by line, and execute apt-get install -y for each line in apt.txt
+        && xargs -a apt.txt apt-get install -y \
+        && apt-get clean \
+        && rm -rf /var/lib/apt/lists/* \
+        ; fi
+
+
 # If a jupyter_notebook_config.py exists, copy it to /etc/jupyter so
 # it will be read by jupyter processes when they start. This feature is
 # not available in repo2docker.

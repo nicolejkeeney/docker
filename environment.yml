@@ -11,7 +11,9 @@ dependencies:
   - intake=0.7.0
   - intake-esm=2023.7.7
   - intake-xarray=0.7.0
+  - jupyterlab=3.4.7
   - netcdf4=1.6.4
+  - notebook=6.4.12
   - pip
   - pandas=2.0.3
   - panel=1.2.0
