@@ -24,11 +24,6 @@ build:
 	@echo "Output from the build will be saved in a log file build.log"
 	docker build -t $(IMG_NAME) .  &> build.log
 
-# "make notebook" 
-# Open Jupyter Notebook from root directory 
-notebook: 
-	docker run $(IMG_NAME) jupyter notebook
-
 # "make conda-lock" 
 # Make conda-lock.yml from environment.yml 
 # You must have conda-lock installed 
