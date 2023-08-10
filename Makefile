@@ -38,4 +38,5 @@ conda-lock:
 PY_SCRIPT = "test/py_test.py"
 run: 
 	@echo "Running python script $(PY_SCRIPT) in runtime instance of $(IMG_NAME)"
-	docker run $(IMG_NAME) python $(PY_SCRIPT)
+	docker run $(IMG_NAME)
+	python $(PY_SCRIPT)
