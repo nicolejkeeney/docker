@@ -56,10 +56,11 @@ The error message might look something like this:
 ERROR:root:failed with error: [Errno 28] No space left on device:
 ```
 ### The solution 
-Docker stores a lot of unneeded files, and these can build up if your building images and running containers a lot. Cleanup these files with the following command, then try building the image again: 
+Docker stores a lot of unneeded files, and these can build up if your building images and running containers a lot. To remove all docker images/containers, run the following:
 ```
 docker system prune --all --force
 ```
+Theres a way to clean out files without removing all the images and containers. See [this article](https://middleware.io/blog/docker-cleanup/) for reference. 
 ## Are you on a fancy new Mac? 
 A collaborator running this code was having an issue building the image from the Dockerfile. We developed a simple workaround. Her computer was a M2 Pro chip on macOS Ventura, I anticipate that this issue might also occur on the M1 Max MacBook Pro as well and other similar systems.
 ### The error message
