@@ -21,7 +21,7 @@ git clone https://github.com/nicolejkeeney/geo-py-docker
 make build
 ```
 ## (2) Launch JupyterLab from docker container 
-Now that you have everything set up locally, you can run your python project in JupyterLab from within a docker container created by the image. Simply run the following code, and then copy-paste the link outputted in terminal into your web browser: 
+Now that you have everything set up locally, you can run your python project in JupyterLab from within a docker container created by the image. Simply run the following command: 
 ```
 make local
 ```
