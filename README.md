@@ -46,20 +46,32 @@ The Makefile exists to make the lives of developers easier. It wraps up all the 
 3) `make local`: open JupyterLab from runtime instance of image
 4) `make run`: run a test python script. Modify the path to the script in the Makefile [here](https://github.com/nicolejkeeney/geo-py-docker/blob/9bd12bbd5aacd94249ba44c0318eb0d546bada7f/Makefile#L38) to change the script.
 
-# Troubleshooting
-
+# Troubleshooting 
+If you are running `make build` to build the image and encounter erros, the terminal output will likely be a mysterious "[build] Error 1". You'll need to go into the log file build.log to inspect the actual error message to be able to troubleshoot because the actual terminal output is stored there. Below are some errors I've encountered while setting the image up on different machines, and how to troubleshoot them. <br><br>**If you encounter other errors not listed here and you find a solution, I would be grateful if you add them to the README!** See the section on [contribution](https://github.com/nicolejkeeney/geo-py-docker/blob/main/README.md#find-an-issue-in-the-repo-or-want-to-contribute).
+ for more info.
+## You're out of space on your device
+### The error message 
+The error message might look something like this: 
+```
+ERROR:root:failed with error: [Errno 28] No space left on device:
+```
+### The solution 
+Docker stores a lot of unneeded files, and these can build up if your building images and running containers a lot. Cleanup these files with the following command, then try building the image again: 
+```
+docker system prune --all --force
+```
 ## Are you on a fancy new Mac? 
 A collaborator running this code was having an issue building the image from the Dockerfile. We developed a simple workaround. Her computer was a M2 Pro chip on macOS Ventura, I anticipate that this issue might also occur on the M1 Max MacBook Pro as well and other similar systems.
-### The issue 
+### The error message
 The issue she ran into occurred during the installation of Mambaforge. The output from the build log file is: 
 ```
 qemu-x86_64: Could not open '/lib64/ld-linux-x86-64.so.2': No such file or directory
 ```
 ### The solution 
-The solution is quite simple. Following a [thread from StackOverflow](https://stackoverflow.com/questions/71040681/qemu-x86-64-could-not-open-lib64-ld-linux-x86-64-so-2-no-such-file-or-direc), the solution is to simply modify the first (non-comment) line in the Dockerfile (in which the base image is set) to **specify the platform** used. The line should be: 
+Following a [thread from StackOverflow](https://stackoverflow.com/questions/71040681/qemu-x86-64-could-not-open-lib64-ld-linux-x86-64-so-2-no-such-file-or-direc), the solution is to simply modify the first (non-comment) line in the Dockerfile (in which the base image is set) to **specify the platform** used. The line should be: 
 ```
 FROM --platform=linux/amd64 ubuntu:22.04
 ```
 
-## Find an issue in the repo? 
+## Find an issue in the repo, or want to contribute? 
 Please reach out if you find any issues in the code or descriptive text. While I've done my best, I'm for the most part a self-taught programmer and I don't have an in-depth understanding of docker. If you find an issue and want to contribute to solving it, please open an [issue](https://github.com/nicolejkeeney/py-geo-docker/issues) in GitHub, shoot me an email, or [open a PR](https://github.com/nicolejkeeney/geo-py-docker/pulls) to fix the problem if you are inclined to do so. 
