@@ -27,6 +27,12 @@ make local
 ```
 When you launch a JupyterLab instance from the docker container, the terminal output will print a link for you to open the JupyterLab in your browser. **You'll need to copy-paste this link into your web browser; it will not automatically open for you.** Use the **bottom** link. See the screenshot below.<br><br>
 <img src="images/jupyterlab_link.png" width="850">
+## (3) Run a python script 
+I added an additional key to the Makefile that allows you to easily run a python script: 
+```
+make run
+```
+Simply modify the variable $PY_SCRIPT in the [Makefile](https://github.com/nicolejkeeney/geo-py-docker/blob/11d8ec97c1bd50b3acdb252c5e451872430e1831/Makefile#L38) to change the path to the script you want to run. 
 
 # The nitty-gritty 
 This section provides a more detailed explanation of the various components of the repository. Not required reading! 
@@ -41,13 +47,13 @@ conda-lock -f environment.yml -p osx-64 -p linux-64
 
 ## The Makefile
 The Makefile exists to make the lives of developers easier. It wraps up all the code required to build the image and launch JupyterLab from the container into a single file, allowing the developer to simply run `make build` to build the image and `make local` to launch JupyterLab. <br><br>How is it different from a shell script, you may ask? It doesn't run in parallel like a shell script. You can run isolated sections of code from the same Makefile. For example, `make build` runs just the command for building the image, which you'll only do once, whereas you'll use `make local` anytime you want to open a JupyterLab instance.<br><br>I added a few helpful commands to the Makefile: 
-1) `make conda-lock`: make  the conda-lock file from the environment.yml file. **You need to have conda-lock installed first**
-2) `make build`: build the image
-3) `make local`: open JupyterLab from runtime instance of image
-4) `make run`: run a test python script. Modify the path to the script in the Makefile [here](https://github.com/nicolejkeeney/geo-py-docker/blob/9bd12bbd5aacd94249ba44c0318eb0d546bada7f/Makefile#L38) to change the script.
+1) `make conda-lock`: make  the conda-lock file from the environment.yml file. **You need to have conda-lock installed first.**
+2) `make build`: build the image.
+3) `make local`: open JupyterLab from runtime instance of image.
+4) `make run`: run a python script from runtime instance of image. Modify the path to the script in the Makefile [here](https://github.com/nicolejkeeney/geo-py-docker/blob/9bd12bbd5aacd94249ba44c0318eb0d546bada7f/Makefile#L38) to change the script.
 
 # Troubleshooting 
-If you are running `make build` to build the image and encounter erros, the terminal output will likely be a mysterious "[build] Error 1". You'll need to go into the log file build.log to inspect the actual error message to be able to troubleshoot because the actual terminal output is stored there. Below are some errors I've encountered while setting the image up on different machines, and how to troubleshoot them. <br><br>**If you encounter other errors not listed here and you find a solution, I would be grateful if you add them to the README!** See the section on [contribution](https://github.com/nicolejkeeney/geo-py-docker/blob/main/README.md#find-an-issue-in-the-repo-or-want-to-contribute).
+If you are encountering errors when building the image, the terminal output will likely be a mysterious "[build] Error 1". You'll need to go into the log file build.log to inspect the actual error message to be able to troubleshoot because the actual terminal output is stored there. Below are some errors I've encountered while setting the image up on different machines, and how to troubleshoot them. <br><br>**If you encounter other errors not listed here and you find a solution, I would be grateful if you add them to the README here!** See the section on [contribution](https://github.com/nicolejkeeney/geo-py-docker/blob/main/README.md#find-an-issue-in-the-repo-or-want-to-contribute).
  for more info.
 ## You're out of space on your device
 ### The error message 
@@ -56,7 +62,7 @@ The error message might look something like this:
 ERROR:root:failed with error: [Errno 28] No space left on device:
 ```
 ### The solution 
-Docker stores a lot of unneeded files, and these can build up if your building images and running containers a lot. To remove all docker images/containers, run the following:
+Docker stores a lot of unneeded files, and these can build up if your building images and running containers a lot. You can remove all containers/images with the following code (**PROCEED WITH CAUTION!**):
 ```
 docker system prune --all --force
 ```
@@ -75,4 +81,7 @@ FROM --platform=linux/amd64 ubuntu:22.04
 ```
 
 ## Find an issue in the repo, or want to contribute? 
-Please reach out if you find any issues in the code or descriptive text. While I've done my best, I'm for the most part a self-taught programmer and I don't have an in-depth understanding of docker. If you find an issue and want to contribute to solving it, please open an [issue](https://github.com/nicolejkeeney/py-geo-docker/issues) in GitHub, shoot me an email, or [open a PR](https://github.com/nicolejkeeney/geo-py-docker/pulls) to fix the problem if you are inclined to do so. 
+Please reach out if you find any issues in the code or descriptive text. You can use any of the following messages to contribute: 
+1) Open an [issue](https://github.com/nicolejkeeney/geo-py-docker/issues)
+2) Start a new [discussion](https://github.com/nicolejkeeney/geo-py-docker/discussions)
+3) Fix the issue in a new branch and [open a pull request](https://github.com/nicolejkeeney/geo-py-docker/pulls) for me to review
