@@ -6,14 +6,20 @@ dependencies:
   - aiohttp=3.8.4
   - bokeh=3.2.0
   - dask=2023.7.0
+  - dask-labextension=6.1.0
   - holoviews=1.16.2
   - hvplot=0.8.4
   - intake=0.7.0
   - intake-esm=2023.7.7
   - intake-xarray=0.7.0
-  - jupyterlab=4.0.4
+  - ipywidgets=8.0.7
+  - jupyter-server-proxy=4.0.0
+  - jupyterhub-singleuser=4.0.1
+  - jupyterlab<4
+  - jupyterlab_execute_time
+  - nbgitpuller =1.1.1
   - netcdf4=1.6.4
-  - notebook=7.0.2
+  - notebook=6.4.12
   - pip
   - pandas=2.0.3
   - panel=1.2.0
