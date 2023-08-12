@@ -3,7 +3,7 @@
 # Run "make local" to open JupyterLab from containerized image 
 
 # Name to give the image 
-IMG_NAME = era-renewables
+IMG_NAME = geo-py
 
 # "make local"
 # Launch local JupyerLab from containerized instance of IMG_NAME
