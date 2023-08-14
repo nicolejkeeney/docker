@@ -3,7 +3,7 @@
 # Run "make local" to open JupyterLab from containerized image 
 
 # Name to give the image 
-IMG_NAME = geo-py
+IMG_NAME = geo-py-docker
 
 # "make local"
 # Launch local JupyerLab from containerized instance of IMG_NAME
@@ -32,10 +32,11 @@ conda-lock:
 	@echo "Will fail if conda-lock package is not installed"
 	conda-lock -f environment.yml -p osx-64 -p linux-64
 
-# BONUS: "make run" 
+# "make run" 
 # Run a python script in a runtime instance (container) of the image 
 # Customize the path below to add your own script 
 PY_SCRIPT = "test/py_test.py"
 run: 
 	@echo "Running python script $(PY_SCRIPT) in runtime instance of $(IMG_NAME)"
-	docker run $(IMG_NAME) python $(PY_SCRIPT)
+	docker run -t --rm --volume "$(PWD)":/home/jovyan \
+	$(IMG_NAME) python $(PY_SCRIPT)
