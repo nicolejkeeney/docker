@@ -35,8 +35,10 @@ conda-lock:
 # "make run" 
 # Run a python script in a runtime instance (container) of the image 
 # Customize the path below to add your own script 
-PY_SCRIPT = "test/py_test.py"
+# Add any additional arguments for python script to ARGS
+PY_SCRIPT = "test/test.py"
+ARGS = ""
 run: 
 	@echo "Running python script $(PY_SCRIPT) in runtime instance of $(IMG_NAME)"
 	docker run -t --rm --volume "$(PWD)":/home/jovyan \
-	$(IMG_NAME) python $(PY_SCRIPT)
+	$(IMG_NAME) python $(PY_SCRIPT) $(ARGS)
