@@ -64,7 +64,7 @@ ERROR:root:failed with error: [Errno 28] No space left on device:
 ### The solution 
 Docker stores a lot of unneeded files, and these can build up if your building images and running containers a lot. You can remove all containers/images with the following code (**PROCEED WITH CAUTION!**):
 ```
-docker system prune --all --force
+docker system prune --all 
 ```
 Theres a way to clean out files without removing all the images and containers. See [this article](https://middleware.io/blog/docker-cleanup/) for reference. 
 ## Are you on a fancy new Mac? 
