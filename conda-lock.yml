@@ -801,6 +801,20 @@ package:
     sha256: 67c84822f87b641d89df09758da498b2d4558d47b920fd1d3fe6d3a871e000ff
   category: main
   optional: false
+- name: rdma-core
+  version: '28.9'
+  manager: conda
+  platform: linux-64
+  dependencies:
+    __glibc: '>=2.17,<3.0.a0'
+    libgcc-ng: '>=12'
+    libstdcxx-ng: '>=12'
+  url: https://conda.anaconda.org/conda-forge/linux-64/rdma-core-28.9-h59595ed_1.conda
+  hash:
+    md5: aeffb7c06b5f65e55e6c637408dc4100
+    sha256: 832f9393ab3144ce6468c6f150db9d398fad4451e96a8879afb3059f0c9902f6
+  category: main
+  optional: false
 - name: re2
   version: 2023.03.02
   manager: conda
@@ -1393,13 +1407,14 @@ package:
   manager: conda
   platform: linux-64
   dependencies:
-    libgcc-ng: '>=7.5.0'
+    libgcc-ng: '>=12'
     libnuma: '>=2.0.16,<3.0a0'
-    libstdcxx-ng: '>=7.5.0'
-  url: https://conda.anaconda.org/conda-forge/linux-64/ucx-1.14.1-h0aa22dc_2.conda
+    libstdcxx-ng: '>=12'
+    rdma-core: '>=28.9,<29.0a0'
+  url: https://conda.anaconda.org/conda-forge/linux-64/ucx-1.14.1-h4a2ce2d_3.conda
   hash:
-    md5: 221632ba76f3c2bb58f1db59911548e7
-    sha256: 35e1d29fb1860775fec76e84ab34fb0c240768766fbeaaf5e6b297d769bff1b8
+    md5: 887cdef1446dfadb1e2debd5e63c41df
+    sha256: 4b26e1263435f321feb7238ae884684878670189dfa28aa99058ddc0b4eb6779
   category: main
   optional: false
 - name: xorg-libsm
