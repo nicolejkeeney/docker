@@ -35,7 +35,11 @@ conda-lock:
 # BONUS: "make run" 
 # Run a python script in a runtime instance (container) of the image 
 # Customize the path below to add your own script 
+# Add any additional arguments for python script to ARGS
 PY_SCRIPT = "test/py_test.py"
+ARGS = ""
 run: 
 	@echo "Running python script $(PY_SCRIPT) in runtime instance of $(IMG_NAME)"
-	docker run $(IMG_NAME) python $(PY_SCRIPT)
+	docker run -t --rm --volume "$(PWD)":/home/jovyan \
+	-e AWS_ACCESS_KEY_ID=$(AWS_ACCESS_KEY_ID) -e AWS_SECRET_ACCESS_KEY=$(AWS_SECRET_ACCESS_KEY) \
+	$(IMG_NAME) python $(PY_SCRIPT) $(ARGS)
