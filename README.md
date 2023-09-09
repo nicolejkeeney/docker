@@ -79,7 +79,16 @@ Following a [thread from StackOverflow](https://stackoverflow.com/questions/7104
 ```
 FROM --platform=linux/amd64 ubuntu:22.04
 ```
-
+## You don't have write permissions to a conda path 
+I'm honestly not sure what causes this issue, but I assume it has something to do with a bad setting somehow being set unintentionally (??). Any insights here are welcome.
+### The error message
+Building the Docker image fails at the step when the conda environment is build. The output from the build log is: 
+```
+ERROR:root:The current user does not have write permissions to a required path.
+ERROR:root:  path: /srv/conda/pkgs/urls.txt
+```
+### The solution 
+This isn't a very satisfying solution, but more of a "turn it off and then on again" hacky fix. After pushing all the local files that I wanted to keep to the GitHub repo, I deleted my local version of the repo and re-cloned it, starting fresh. The Docker image then was able to be build. Presumably starting from a clean slate allowed whatever setting or cache had been causing the issue to be reset.
 ## Find an issue in the repo, or want to contribute? 
 Please reach out if you find any issues in the code or descriptive text. You can use any of the following messages to contribute: 
 1) Open an [issue](https://github.com/nicolejkeeney/geo-py-docker/issues)
