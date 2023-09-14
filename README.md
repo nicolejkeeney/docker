@@ -66,7 +66,11 @@ Docker stores a lot of unneeded files, and these can build up if your building i
 ```
 docker system prune --all 
 ```
-Theres a way to clean out files without removing all the images and containers. See [this article](https://middleware.io/blog/docker-cleanup/) for reference. 
+Or: 
+```
+docker system prune --all --force --volumes
+```
+I'm not very familiar with what these commands do and haven't had the time to do my due diligence and check yet. I want to emphasize that you should be careful using either of these commands.  
 ## Are you on a fancy new Mac? 
 A collaborator running this code was having an issue building the image from the Dockerfile. We developed a simple workaround. Her computer was a M2 Pro chip on macOS Ventura, I anticipate that this issue might also occur on the M1 Max MacBook Pro as well and other similar systems.
 ### The error message
