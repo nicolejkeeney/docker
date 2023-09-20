@@ -62,7 +62,11 @@ The error message might look something like this:
 ERROR:root:failed with error: [Errno 28] No space left on device:
 ```
 ### The solution 
-Docker stores a lot of unneeded files, and these can build up if your building images and running containers a lot. You can remove all containers/images with the following code (**PROCEED WITH CAUTION!**):
+Docker stores a lot of unneeded files, and these can build up if your building images and running containers a lot. First, try cleaning up the builder cache: 
+```
+docker builder prune
+```
+If this doesn't clean up any files, you can remove all containers/images with the following code (**PROCEED WITH CAUTION!**):
 ```
 docker system prune --all 
 ```
