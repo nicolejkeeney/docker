@@ -62,6 +62,8 @@ The error message might look something like this:
 ERROR:root:failed with error: [Errno 28] No space left on device:
 ```
 ### The solution 
+**Make sure you have pulled the most recent version of this repo that includes the `.dockerignore` file.** The default behavior when building an image is to copy over everything, including any large data files you have. Make sure you add any data files into the `.dockerignore` file, or put them into a directory called "data", which I've already added to the file. <br><br>If you're still having issues, you can try the following:<br>
+
 Docker stores a lot of unneeded files, and these can build up if your building images and running containers a lot. First, try cleaning up the builder cache: 
 ```
 docker builder prune
